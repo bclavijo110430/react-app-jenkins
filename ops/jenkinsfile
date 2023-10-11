@@ -1,0 +1,78 @@
+pipeline {
+    agent { label 'agent' }
+    environment {
+    REGISTRY = 'nombre_del_registry'
+    USERNAME = 'nombre_de_usuario'
+    PASSDIN = 'contraseña'
+    SONARQUBE_SERVER = 'url_del_servidor_sonar'
+   }
+
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'cd app && npm install'
+            }
+        }
+        stage('Test_compatibility') {
+            steps {
+                sh 'cd app && npm test'
+            }
+        }
+
+        stage('execute unit_test') {
+            steps {
+                script {
+                    sh 'unit_test/Jenkinsfile'
+                }
+            }
+        }  
+
+
+
+
+        stage('sonar_scan') {
+
+            steps {
+                withSonarQubeEnv('${SONARQUBE_SERVER}') {
+                    sh 'mvn sonar:sonar'  
+                }
+            }
+        }
+        
+        stage("Quality Gate"){
+          timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+              }
+          }
+        }
+
+
+
+        stage('Docker Build') {
+            steps {
+                sh 'cd app && docker build -t  ${REGISTRY}/nexos:node-app-${BUILD_NUMBER} .'
+            }
+        }
+        stage('Docker Push') {
+            steps {
+                sh '''
+                    aws ecr get-login-password --region us-east-1 | docker login --username ${USERNAME} --password-stdin ${PASSDIN}
+                    docker push  ${REGISTRY}/nexos:node-app-${BUILD_NUMBER}
+                  '''
+            }
+        }
+        post {
+        success {
+            // Notifica el éxito 
+            slackSend color: 'good', message: 'Pipeline exitoso!'
+        }
+        failure {
+            // Notifica el fallo 
+            slackSend color: 'danger', message: 'El pipeline ha fallado.'
+        }
+    }
+  }  
+}

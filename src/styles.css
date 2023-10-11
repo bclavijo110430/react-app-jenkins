@@ -1,0 +1,46 @@
+/* styles.css */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.App {
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 300px;
+}
+
+h1 {
+  color: #333;
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+
+p {
+  color: #555;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Estilos para el mensaje de bienvenida */
+.message {
+  color: #007BFF;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Estilos para la fecha y hora */
+.datetime {
+  font-size: 1.4rem;
+}
+
+  

@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar Repositorio') {
+            steps {
+                // Clona tu repositorio si no lo has hecho ya
+                git 'https://github.com/tu/repo.git'
+            }
+        }
+
+        stage('Instalar Dependencias') {
+            steps {
+                // Instala las dependencias de Python, si es necesario
+                sh 'pip install pytest pytest-selenium selenium'
+            }
+        }
+
+        stage('Ejecutar Pruebas') {
+            steps {
+                // Ejecuta las pruebas de PyTest
+                sh 'pytest ./unit_test/inut_test.py'
+            }
+        }
+    }
+}
