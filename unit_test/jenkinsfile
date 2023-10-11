@@ -5,7 +5,7 @@ pipeline {
         stage('Clonar Repositorio') {
             steps {
                 // Clona tu repositorio si no lo has hecho ya
-                git 'https://github.com/tu/repo.git'
+                git 'https://github.com/bclavijo110430/react-app-jenkins.git'
             }
         }
 
