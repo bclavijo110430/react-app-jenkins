@@ -59,7 +59,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 sh '''
-                    aws ecr get-login-password --region us-east-1 | docker login --username ${USERNAME} --password-stdin ${PASSDIN}
+                    docker login --username ${USERNAME} --password-stdin ${PASSDIN}
                     docker push  ${REGISTRY}/nexos:node-app-${BUILD_NUMBER}
                   '''
             }
