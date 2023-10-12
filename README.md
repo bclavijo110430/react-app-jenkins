@@ -1,18 +1,10 @@
-#jenkins
-
- cuenta con una pipeline  cd cicd para jenkins 
-
-# docker 
-
- docker build  -t imagename:tag .
- puerto de imagen : 80
 
 
-# inicializado con con la aplicación Create React
+# aplicación Create React
 
 Este proyecto se inició con [Create React App] (https://github.com/facebook/create-react-app).
 
-## Guiones disponibles
+## opciones
 
 En el directorio del proyecto, puede ejecutar:
 
@@ -36,4 +28,13 @@ Incluye correctamente React en modo de producción y optimiza la compilación pa
 
 La compilación está minimizada y los nombres de archivos incluyen los hashes.\
 ¡Su aplicación está lista para ser implementada!
+
+# jenkins
+
+ cuenta con una pipeline  cd cicd para jenkins 
+
+# docker 
+
+ docker build  -t imagename:tag .
+ puerto de imagen : 80
 
