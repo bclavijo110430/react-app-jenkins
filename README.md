@@ -1,6 +1,6 @@
 
 
-# aplicación Create React
+# Aplicación Create React
 
 Este proyecto se inició con [Create React App] (https://github.com/facebook/create-react-app).
 
