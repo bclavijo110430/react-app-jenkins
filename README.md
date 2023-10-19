@@ -31,7 +31,7 @@ La compilación está minimizada y los nombres de archivos incluyen los hashes.\
 
 # jenkins
 
- cuenta con una pipeline  cd cicd para jenkins 
+ cuenta con una pipeline  de cicd para jenkins 
 
 # docker 
 
